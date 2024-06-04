@@ -63,6 +63,18 @@
                 }
             }
 
+            //Animate using setInterval.
+
+            //test data
+            const ball = new Ball(200,160,20,2,2,"red");
+
+            setInterval(()=>{
+                
+                ball.update();
+                ball.draw();
+            }, 100)
+            
+            
         </script>
     </body>
 </html>
