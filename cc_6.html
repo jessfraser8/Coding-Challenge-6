@@ -12,6 +12,8 @@
             
             let cavas = document .querySelector("#canvas");
             let ctx = canvas.getContext("2d");
+            const width = 900
+            const height = 600
 
             //Create Ball class and initialize x, y, radius, dx, dy, and color properties.
             class Ball{
@@ -30,6 +32,34 @@
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
                     ctx.fill();
+                }
+
+                //Create Update method to make the ball move.
+                update() {
+                    //Collision detection
+                    let rightSide = this.x + this.radius
+                    let leftSide = this.x - this.radius
+                    let topSide = this.y - this.radius
+                    let bottomSide = this.y + this.radius
+
+                    if(rightSide >= width) {
+                     this.dx *= -1
+                    };
+                   if(bottomSide >= height) {
+                    this.dy *= -1
+                   };
+                   if(leftSide <= 0) {
+                    this.dx *=-1
+                   };
+                   if(topSide <= 0) {
+                    this.dy *= -1
+                   };
+
+                   //Move
+                   this.x += this.dx;
+                   this.y += this.dy;
+                   ctx.clearRect(0,0, width,height);
+                   return this.x & this.y;
                 }
             }
 
